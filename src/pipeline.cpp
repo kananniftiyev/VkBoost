@@ -1,7 +1,8 @@
 #include "pipeline.hpp"
+#include <vulkan/vulkan_core.h>
 
 [[nodiscard]]
-VkPipelineRasterizationStateCreateInfo vk_boost::pipeline::defaultRasterizerInfo(){
+VkPipelineRasterizationStateCreateInfo vk_boost::pipeline::defaultRasterizerStateInfo(){
     return VkPipelineRasterizationStateCreateInfo{
         .sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO,
         .pNext = nullptr,
@@ -56,5 +57,19 @@ VkPipelineInputAssemblyStateCreateInfo vk_boost::pipeline::defaultInputAssemblyS
         .flags = 0,
         .topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST,
         .primitiveRestartEnable = VK_FALSE,
+    };
+}
+
+[[nodiscard]]
+VkPipelineDepthStencilStateCreateInfo vk_boost::pipeline::defaultDepthStencilStateInfo(){
+    return VkPipelineDepthStencilStateCreateInfo{
+        .sType = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO,
+        .pNext = nullptr,
+        .flags = 0,
+        .depthTestEnable = VK_TRUE,
+        .depthWriteEnable = VK_TRUE,
+        .depthCompareOp = VK_COMPARE_OP_LESS,
+        .depthBoundsTestEnable = VK_FALSE,
+        .stencilTestEnable = VK_TRUE
     };
 }
