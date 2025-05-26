@@ -1,0 +1,3 @@
+[submodule "third_party/mINI"]
+	path = third_party/mINI
+	url = https://github.com/metayeti/mINI.git
