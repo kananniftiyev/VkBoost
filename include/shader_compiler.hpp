@@ -16,27 +16,28 @@ namespace fs = std::filesystem;
 namespace vk_boost::shader
 {
 
-class shader_compiler
-{
-private:
-    std::string _folder_path;
-    fs::path _compiled_shader_folder;
-    shaderc::Compiler _compiler;
-    std::vector<std::string> _vert_files;
-    std::vector<std::string> _frag_files;
+    class shader_compiler
+    {
+    private:
+        std::string _folder_path;
+        fs::path _compiled_shader_folder;
+        shaderc::Compiler _compiler;
+        std::vector<std::string> _vert_files;
+        std::vector<std::string> _frag_files;
 
-    static bool changeToProjectPath(const std::vector<fs::path> &markers = {".git", "CMakeLists.txt", "Makefile"});
+        static bool changeToProjectPath(const std::vector<fs::path> &markers = {".git", "CMakeLists.txt", "Makefile"});
 
-    fs::path compileShader(fs::path path);
+        fs::path compileShader(fs::path path);
 
-    bool isShaderModified(fs::path path, mINI::INIStructure &ini);
+        bool isShaderModified(fs::path path, mINI::INIStructure &ini);
 
-    std::string fileLastWriteTimeStr(const fs::path &path);
+        std::string fileLastWriteTimeStr(const fs::path &path);
 
+    public:
+        shader_compiler(std::string file_path);
+        ~shader_compiler();
 
-public:
-    shader_compiler(std::string file_path);
-    ~shader_compiler();
-};
+        VkShaderModule getVulkanShaderModule(const VkDevice &device);
+    };
 
 } // namespace vk_boost::shader

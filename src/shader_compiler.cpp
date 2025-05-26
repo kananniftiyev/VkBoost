@@ -1,5 +1,27 @@
 #include "shader_compiler.hpp"
 
+namespace
+{
+#ifdef DEBUG
+#define LOG_INFO(...) spdlog::info(__VA_ARGS__)
+#define LOG_WARN(...) spdlog::warn(__VA_ARGS__)
+#define LOG_ERROR(...) spdlog::error(__VA_ARGS__)
+#else
+#define LOG_INFO(...) \
+    do                \
+    {                 \
+    } while (0)
+#define LOG_WARN(...) \
+    do                \
+    {                 \
+    } while (0)
+#define LOG_ERROR(...) \
+    do                 \
+    {                  \
+    } while (0)
+#endif
+
+} // namespace
 
 bool vk_boost::shader::shader_compiler::changeToProjectPath(const std::vector<fs::path> &markers)
 {
@@ -29,19 +51,18 @@ bool vk_boost::shader::shader_compiler::changeToProjectPath(const std::vector<fs
 fs::path vk_boost::shader::shader_compiler::compileShader(fs::path path)
 {
     shaderc::CompileOptions options;
-
+    options.SetOptimizationLevel(shaderc_optimization_level_size);
 
     std::ifstream input(path);
     if (!input)
     {
-        spdlog::error("Could not open input file for read");
+        LOG_ERROR("Could not open input file for read");
         return "";
     }
 
     std::stringstream buffer;
     buffer << input.rdbuf();
     std::string source{buffer.str()};
-
 
     shaderc_shader_kind kind = (path.extension() == ".vert")
                                    ? shaderc_shader_kind::shaderc_glsl_default_vertex_shader
@@ -50,17 +71,21 @@ fs::path vk_boost::shader::shader_compiler::compileShader(fs::path path)
 
     if (module.GetCompilationStatus() != shaderc_compilation_status_success)
     {
-        spdlog::error("Could not compile shader : {}", path.string());
+        LOG_ERROR("Could not compile shader : {}", path.string());
         return "";
     }
 
     std::vector<uint32_t> spriv{module.cbegin(), module.cend()};
 
-    fs::path out_path = this->_compiled_shader_folder / (path.stem().string() + ".spv");
+    std::string kind_str = (path.extension() == ".vert") ? "-vert" : "-frag";
+
+    fs::path out_path = this->_compiled_shader_folder / (path.stem().string() + kind_str + ".spv");
+
+    LOG_INFO("{}", out_path.string());
     std::ofstream out(out_path, std::ios::binary);
     if (!out)
     {
-        spdlog::error("Failed to open file for writing");
+        LOG_ERROR("Failed to open file for writing");
         return "";
     }
 
@@ -78,15 +103,14 @@ bool vk_boost::shader::shader_compiler::isShaderModified(fs::path path, mINI::IN
 
     if (lastModifiedData == fileLastWriteTimeStr(path))
     {
-        spdlog::info("file has not been modified since");
+        LOG_INFO("file has not been modified since");
         return false;
     }
     else
     {
-        spdlog::info("file has been modified");
+        LOG_INFO("file has been modified");
         return true;
     }
-
 
     return false;
 }
@@ -114,16 +138,16 @@ vk_boost::shader::shader_compiler::shader_compiler(std::string file_path) : _fol
     // 1. Change to project root path.
     if (!changeToProjectPath())
     {
-        spdlog::error("Project could not be found.");
+        LOG_ERROR("Project could not be found.");
         return;
     }
 
-    spdlog::info("Looking for folder in: {}", fs::current_path().string());
+    LOG_INFO("Looking for folder in: {}", fs::current_path().string());
 
     // 2. Check if folder path exists.
     if (!fs::exists(this->_folder_path))
     {
-        spdlog::error("Folder does not exist!");
+        LOG_ERROR("Folder does not exist!");
         throw std::runtime_error("Folder does not exist");
     }
 
@@ -135,11 +159,11 @@ vk_boost::shader::shader_compiler::shader_compiler(std::string file_path) : _fol
 
     if (fs::exists(ini_path))
     {
-        spdlog::info("found the ini file");
+        LOG_INFO("found the ini file");
     }
     else
     {
-        spdlog::info("creating the ini file.");
+        LOG_INFO("creating the ini file.");
         std::ofstream created_ini(ini_path);
     }
 
@@ -149,9 +173,8 @@ vk_boost::shader::shader_compiler::shader_compiler(std::string file_path) : _fol
 
     if (!ini_file.read(ini))
     {
-        spdlog::error("could not read ini file");
+        LOG_ERROR("could not read ini file");
     }
-
 
     // 4. Go through shaders files and read & write
     for (const auto &file : fs::recursive_directory_iterator{this->_folder_path})
@@ -161,17 +184,17 @@ vk_boost::shader::shader_compiler::shader_compiler(std::string file_path) : _fol
             continue;
         }
 
-        spdlog::info("File: {}", file.path().string());
+        LOG_INFO("File: {}", file.path().string());
 
         if (isShaderModified(file.path(), ini))
         {
-            spdlog::info("compiling the shader again");
+            LOG_INFO("compiling the shader again");
             ini[file.path().string()]["compiled_output"] = compileShader(file.path()).string();
             ini[file.path().string()]["last_modified"] = fileLastWriteTimeStr(file.path());
         }
         else
         {
-            spdlog::info("no compile");
+            LOG_INFO("no compile");
         }
     }
 

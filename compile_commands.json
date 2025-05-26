@@ -1,8 +1,0 @@
-[
-  {
-    "directory": "/home/kananniftiyev/Desktop/vk-boost/builddir",
-    "command": "c++ -Ilibvk-boost-lib.a.p -I. -I.. -I../include -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -O0 -g -fPIC -MD -MQ libvk-boost-lib.a.p/src_pipeline.cpp.o -MF libvk-boost-lib.a.p/src_pipeline.cpp.o.d -o libvk-boost-lib.a.p/src_pipeline.cpp.o -c ../src/pipeline.cpp",
-    "file": "../src/pipeline.cpp",
-    "output": "libvk-boost-lib.a.p/src_pipeline.cpp.o"
-  }
-]
