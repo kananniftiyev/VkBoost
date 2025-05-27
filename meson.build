@@ -23,6 +23,7 @@ src_files = files(
     'src/pipeline.cpp',
     'src/shader_compiler.cpp',
     'src/sync.cpp',
+    'src/vk_shader.cpp',
 )
 
 deps = [vulkan_dep, shaderc_dep, spdlog_dep, mini_dep, xxhash_dep]

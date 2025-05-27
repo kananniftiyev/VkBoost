@@ -9,7 +9,6 @@
 #include <spdlog/spdlog.h>
 #include <string>
 #include <vector>
-#include <vulkan/vulkan.h>
 
 namespace fs = std::filesystem;
 
@@ -36,8 +35,6 @@ namespace vk_boost::shader
     public:
         shader_compiler(std::string file_path);
         ~shader_compiler();
-
-        VkShaderModule getVulkanShaderModule(const VkDevice &device);
     };
 
 } // namespace vk_boost::shader
