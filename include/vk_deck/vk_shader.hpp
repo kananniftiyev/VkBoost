@@ -5,7 +5,7 @@
 #include <fstream>
 #include <vector>
 
-namespace vk_boost::shader
+namespace vk_deck::shader
 {
   VkShaderModule createShaderModule(const VkDevice &device, const std::string &spv_path);
 } // namespace vk_boost::shader

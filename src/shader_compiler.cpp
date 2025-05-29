@@ -1,4 +1,4 @@
-#include "vk_boost/shader_compiler.hpp"
+#include "vk_deck/shader_compiler.hpp"
 
 namespace
 {
@@ -23,7 +23,7 @@ namespace
 
 } // namespace
 
-bool vk_boost::shader::shader_compiler::changeToProjectPath(const std::vector<fs::path> &markers)
+bool vk_deck::shader::shader_compiler::changeToProjectPath(const std::vector<fs::path> &markers)
 {
     while (true)
     {
@@ -48,7 +48,7 @@ bool vk_boost::shader::shader_compiler::changeToProjectPath(const std::vector<fs
     return false;
 }
 
-fs::path vk_boost::shader::shader_compiler::compileShader(fs::path path)
+fs::path vk_deck::shader::shader_compiler::compileShader(fs::path path)
 {
     shaderc::CompileOptions options;
     options.SetOptimizationLevel(shaderc_optimization_level_size);
@@ -95,7 +95,7 @@ fs::path vk_boost::shader::shader_compiler::compileShader(fs::path path)
     return out_path;
 }
 
-bool vk_boost::shader::shader_compiler::isShaderModified(fs::path path, mINI::INIStructure &ini)
+bool vk_deck::shader::shader_compiler::isShaderModified(fs::path path, mINI::INIStructure &ini)
 {
     auto lastModifiedDate = fs::last_write_time(path);
 
@@ -115,7 +115,7 @@ bool vk_boost::shader::shader_compiler::isShaderModified(fs::path path, mINI::IN
     return false;
 }
 
-std::string vk_boost::shader::shader_compiler::fileLastWriteTimeStr(const fs::path &path)
+std::string vk_deck::shader::shader_compiler::fileLastWriteTimeStr(const fs::path &path)
 {
     auto ftime = fs::last_write_time(path);
 
@@ -133,7 +133,7 @@ std::string vk_boost::shader::shader_compiler::fileLastWriteTimeStr(const fs::pa
     return timestr;
 }
 
-vk_boost::shader::shader_compiler::shader_compiler(std::string file_path) : _folder_path(std::move(file_path))
+vk_deck::shader::shader_compiler::shader_compiler(std::string file_path) : _folder_path(std::move(file_path))
 {
     // 1. Change to project root path.
     if (!changeToProjectPath())
@@ -201,6 +201,6 @@ vk_boost::shader::shader_compiler::shader_compiler(std::string file_path) : _fol
     ini_file.write(ini);
 }
 
-vk_boost::shader::shader_compiler::~shader_compiler()
+vk_deck::shader::shader_compiler::~shader_compiler()
 {
 }

@@ -12,7 +12,7 @@
 
 namespace fs = std::filesystem;
 
-namespace vk_boost::shader
+namespace vk_deck::shader
 {
 
     class shader_compiler

@@ -2,7 +2,7 @@
 
 #include <vulkan/vulkan.h>
 
-namespace vk_boost::pipeline
+namespace vk_deck::pipeline
 {
 
   VkPipelineRasterizationStateCreateInfo defaultRasterizerStateInfo();

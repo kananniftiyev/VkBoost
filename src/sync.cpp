@@ -1,7 +1,7 @@
-#include "vk_boost/sync.hpp"
+#include "vk_deck/sync.hpp"
 
 [[nodiscard]]
-VkFence vk_boost::sync::createFence(const VkDevice &device)
+VkFence vk_deck::sync::createFence(const VkDevice &device)
 {
     VkFence fence;
 
@@ -16,7 +16,7 @@ VkFence vk_boost::sync::createFence(const VkDevice &device)
 }
 
 [[nodiscard]]
-VkSemaphore vk_boost::sync::createSemaphore(const VkDevice &device)
+VkSemaphore vk_deck::sync::createSemaphore(const VkDevice &device)
 {
     VkSemaphore semaphore;
 

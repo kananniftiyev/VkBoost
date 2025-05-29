@@ -1,7 +1,7 @@
-#include "vk_boost/vk_shader.hpp"
+#include "vk_deck/vk_shader.hpp"
 
 [[nodiscard]]
-VkShaderModule vk_boost::shader::createShaderModule(const VkDevice &device, const std::string &spv_path)
+VkShaderModule vk_deck::shader::createShaderModule(const VkDevice &device, const std::string &spv_path)
 {
 
   std::ifstream input_shader(spv_path, std::ios::ate | std::ios::binary);
