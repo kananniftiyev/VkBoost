@@ -1,4 +1,4 @@
-#include "pipeline.hpp"
+#include "vk_boost/pipeline.hpp"
 
 [[nodiscard]]
 VkPipelineRasterizationStateCreateInfo vk_boost::pipeline::defaultRasterizerStateInfo()
@@ -28,7 +28,6 @@ VkPipelineColorBlendStateCreateInfo vk_boost::pipeline::defaultColorBlendStateIn
                                                .attachmentCount = 1,
                                                .pAttachments = &blend_attachment_state};
 }
-
 
 [[nodiscard]]
 VkPipelineMultisampleStateCreateInfo vk_boost::pipeline::defaultMultisampleStateInfo()

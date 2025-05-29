@@ -1,4 +1,4 @@
-#include "vk_shader.hpp"
+#include "vk_boost/vk_shader.hpp"
 
 [[nodiscard]]
 VkShaderModule vk_boost::shader::createShaderModule(const VkDevice &device, const std::string &spv_path)

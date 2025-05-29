@@ -18,7 +18,12 @@ xxhash_dep = dependency('libxxhash', required: true)
 
 mini_dep = declare_dependency(include_directories: include_directories('./third_party/mINI/src'))
 
+vma_dep = declare_dependency(
+    include_directories: include_directories('./third_party/vma/include'),
+)
+
 src_files = files(
+    'src/buffer.cpp',
     'src/main.cpp',
     'src/pipeline.cpp',
     'src/shader_compiler.cpp',
@@ -26,7 +31,7 @@ src_files = files(
     'src/vk_shader.cpp',
 )
 
-deps = [vulkan_dep, shaderc_dep, spdlog_dep, mini_dep, xxhash_dep]
+deps = [vulkan_dep, shaderc_dep, spdlog_dep, mini_dep, xxhash_dep, vma_dep]
 
 vk_boost_lib = static_library(
     'vk-boost-lib',

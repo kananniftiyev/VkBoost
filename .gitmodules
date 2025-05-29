@@ -1,3 +1,6 @@
 [submodule "third_party/mINI"]
 	path = third_party/mINI
 	url = https://github.com/metayeti/mINI.git
+[submodule "third_party/vma"]
+	path = third_party/vma
+	url = https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator
