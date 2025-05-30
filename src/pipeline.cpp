@@ -18,7 +18,7 @@ VkPipelineRasterizationStateCreateInfo vk_deck::pipeline::defaultRasterizerState
 [[nodiscard]]
 VkPipelineColorBlendStateCreateInfo vk_deck::pipeline::defaultColorBlendStateInfo()
 {
-    VkPipelineColorBlendAttachmentState blend_attachment_state{};
+    static VkPipelineColorBlendAttachmentState blend_attachment_state{};
     blend_attachment_state.colorWriteMask = 0xf;
     blend_attachment_state.blendEnable = VK_FALSE;
 

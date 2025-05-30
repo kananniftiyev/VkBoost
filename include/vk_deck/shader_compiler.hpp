@@ -14,7 +14,6 @@ namespace fs = std::filesystem;
 
 namespace vk_deck::shader
 {
-
     class shader_compiler
     {
     private:

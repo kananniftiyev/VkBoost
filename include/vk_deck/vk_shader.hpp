@@ -7,5 +7,9 @@
 
 namespace vk_deck::shader
 {
+  /// @brief Creates VkShaderModule from given path.
+  /// @param device VkDevice Instance.
+  /// @param spv_path SPRI-V shader path.
+  /// @return VkShaderModule.
   VkShaderModule createShaderModule(const VkDevice &device, const std::string &spv_path);
 } // namespace vk_boost::shader

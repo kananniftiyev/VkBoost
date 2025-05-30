@@ -6,11 +6,13 @@ if get_option('buildtype') == 'debug'
     debug_args += ['-DDEBUG']
 endif
 
-cxx_std = 'c++20'
+cxx_std = 'c++17'
 
 vulkan_dep = dependency('vulkan', required: true)
 
 shaderc_dep = dependency('shaderc', required: true)
+
+catch2_dep = dependency('catch2', required: true)
 
 spdlog_dep = dependency('spdlog', required: true)
 
@@ -22,14 +24,15 @@ vma_dep = declare_dependency(
 
 src_files = files(
     'src/buffer.cpp',
-    'src/main.cpp',
     'src/pipeline.cpp',
     'src/shader_compiler.cpp',
     'src/sync.cpp',
     'src/vk_shader.cpp',
 )
 
-deps = [vulkan_dep, shaderc_dep, spdlog_dep, mini_dep, vma_dep]
+test_files = files('tests/main.cpp', 'tests/pipeline_test.cpp')
+
+deps = [vulkan_dep, shaderc_dep, spdlog_dep, mini_dep, vma_dep, catch2_dep]
 
 vk_deck_lib = static_library(
     'vk_deck_lib',
@@ -40,10 +43,12 @@ vk_deck_lib = static_library(
 )
 
 vk_deck_test = executable(
-    'vk_deck_tests',
+    'vk_deck_test',
     include_directories: include_directories('include'),
-    sources: src_files,
+    sources: test_files,
     dependencies: deps,
     link_with: vk_deck_lib,
     cpp_args: debug_args,
 )
+
+test('VkDeck Test', vk_deck_test)

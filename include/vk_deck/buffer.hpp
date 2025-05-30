@@ -13,7 +13,7 @@ namespace vk_deck::buffer
     VmaAllocation allocation;
   };
 
-  enum class BufferAlloctionType
+    enum class BufferAlloctionType
   {
     CPU_ONLY_BUFFER,
     GPU_ONLY_BUFFER,
