@@ -149,3 +149,4 @@ ipch/
 .vscode
 .cache
 shaders
+.vs
