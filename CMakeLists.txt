@@ -25,6 +25,7 @@ find_package(Vulkan REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(unofficial-shaderc CONFIG REQUIRED)
 find_package(Catch2 REQUIRED)
+find_package(imgui CONFIG REQUIRED)
 
 # Manual includes
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -39,6 +40,7 @@ set(SRC_FILES
     src/sync.cpp
     src/vk_shader.cpp
     src/dynamic_rendering.cpp
+    src/imgui.cpp
 )
 
 set(TEST_FILES
@@ -52,6 +54,7 @@ target_link_libraries(vk_deck_lib PRIVATE
     Vulkan::Vulkan
     unofficial-shaderc
     spdlog::spdlog
+    imgui::imgui
 )
 
 # Test executable
