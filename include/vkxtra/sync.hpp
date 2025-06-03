@@ -4,7 +4,7 @@
 #include <vulkan/vulkan_core.h>
 #include <cassert>
 
-namespace vk_deck::sync
+namespace vkxtra::sync
 {
     /// @brief Creates simple VkFence.
     /// @param device VkDevice instance.

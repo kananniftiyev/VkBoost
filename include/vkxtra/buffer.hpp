@@ -5,7 +5,7 @@
 #include <vector>
 #include <stdexcept>
 
-namespace vk_deck::buffer
+namespace vkxtra::buffer
 {
   struct buffer_resource
   {

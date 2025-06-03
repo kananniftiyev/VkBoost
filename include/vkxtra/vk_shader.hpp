@@ -5,7 +5,7 @@
 #include <fstream>
 #include <vector>
 
-namespace vk_deck::shader
+namespace vkxtra::shader
 {
   /// @brief Creates VkShaderModule from given path.
   /// @param device VkDevice Instance.

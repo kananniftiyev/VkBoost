@@ -1,7 +1,7 @@
-#include "vk_deck/pipeline.hpp"
+#include "vkxtra/pipeline.hpp"
 
 [[nodiscard]]
-VkPipelineRasterizationStateCreateInfo vk_deck::pipeline::defaultRasterizerStateInfo()
+VkPipelineRasterizationStateCreateInfo vkxtra::pipeline::defaultRasterizerStateInfo()
 {
     return VkPipelineRasterizationStateCreateInfo{.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO,
                                                   .pNext = nullptr,
@@ -16,7 +16,7 @@ VkPipelineRasterizationStateCreateInfo vk_deck::pipeline::defaultRasterizerState
 }
 
 [[nodiscard]]
-VkPipelineColorBlendStateCreateInfo vk_deck::pipeline::defaultColorBlendStateInfo()
+VkPipelineColorBlendStateCreateInfo vkxtra::pipeline::defaultColorBlendStateInfo()
 {
     static VkPipelineColorBlendAttachmentState blend_attachment_state{};
     blend_attachment_state.colorWriteMask = 0xf;
@@ -30,7 +30,7 @@ VkPipelineColorBlendStateCreateInfo vk_deck::pipeline::defaultColorBlendStateInf
 }
 
 [[nodiscard]]
-VkPipelineMultisampleStateCreateInfo vk_deck::pipeline::defaultMultisampleStateInfo()
+VkPipelineMultisampleStateCreateInfo vkxtra::pipeline::defaultMultisampleStateInfo()
 {
     return VkPipelineMultisampleStateCreateInfo{.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO,
                                                 .pNext = nullptr,
@@ -44,7 +44,7 @@ VkPipelineMultisampleStateCreateInfo vk_deck::pipeline::defaultMultisampleStateI
 }
 
 [[nodiscard]]
-VkPipelineInputAssemblyStateCreateInfo vk_deck::pipeline::defaultInputAssemblyStateInfo()
+VkPipelineInputAssemblyStateCreateInfo vkxtra::pipeline::defaultInputAssemblyStateInfo()
 {
     return VkPipelineInputAssemblyStateCreateInfo{
         .sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO,
@@ -56,7 +56,7 @@ VkPipelineInputAssemblyStateCreateInfo vk_deck::pipeline::defaultInputAssemblySt
 }
 
 [[nodiscard]]
-VkPipelineDepthStencilStateCreateInfo vk_deck::pipeline::defaultDepthStencilStateInfo()
+VkPipelineDepthStencilStateCreateInfo vkxtra::pipeline::defaultDepthStencilStateInfo()
 {
     return VkPipelineDepthStencilStateCreateInfo{.sType = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO,
                                                  .pNext = nullptr,

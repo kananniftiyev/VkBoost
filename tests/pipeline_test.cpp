@@ -1,10 +1,10 @@
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch_all.hpp>
-#include "vk_deck/pipeline.hpp"
+#include "vkxtra/pipeline.hpp"
 
 TEST_CASE("Default Rasterization Info", "[Pipeline]")
 {
-  auto info = vk_deck::pipeline::defaultRasterizerStateInfo();
+  auto info = vkxtra::pipeline::defaultRasterizerStateInfo();
 
   REQUIRE(info.sType == VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO);
   REQUIRE(info.pNext == nullptr);
@@ -22,7 +22,7 @@ TEST_CASE("Default Rasterization Info", "[Pipeline]")
 
 TEST_CASE("Default Color Blender Info", "[Pipeline]")
 {
-  auto info = vk_deck::pipeline::defaultColorBlendStateInfo();
+  auto info = vkxtra::pipeline::defaultColorBlendStateInfo();
 
   REQUIRE(info.sType == VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO);
   REQUIRE(info.pNext == nullptr);
@@ -37,7 +37,7 @@ TEST_CASE("Default Color Blender Info", "[Pipeline]")
 
 TEST_CASE("Default Multisample State Info", "[Pipeline]")
 {
-  auto info = vk_deck::pipeline::defaultMultisampleStateInfo();
+  auto info = vkxtra::pipeline::defaultMultisampleStateInfo();
 
   REQUIRE(info.sType == VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO);
   REQUIRE(info.pNext == nullptr);
@@ -52,7 +52,7 @@ TEST_CASE("Default Multisample State Info", "[Pipeline]")
 
 TEST_CASE("Default Input Assembly State Info", "[Pipeline]")
 {
-  auto info = vk_deck::pipeline::defaultInputAssemblyStateInfo();
+  auto info = vkxtra::pipeline::defaultInputAssemblyStateInfo();
 
   REQUIRE(info.sType == VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO);
   REQUIRE(info.pNext == nullptr);
@@ -63,7 +63,7 @@ TEST_CASE("Default Input Assembly State Info", "[Pipeline]")
 
 TEST_CASE("Default Depth Stencil State Info", "[Pipeline]")
 {
-  auto info = vk_deck::pipeline::defaultDepthStencilStateInfo();
+  auto info = vkxtra::pipeline::defaultDepthStencilStateInfo();
 
   REQUIRE(info.sType == VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO);
   REQUIRE(info.pNext == nullptr);

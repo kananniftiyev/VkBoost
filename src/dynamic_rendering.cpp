@@ -1,6 +1,6 @@
-#include "vk_deck/dynamic_rendering.hpp"
+#include "vkxtra/dynamic_rendering.hpp"
 
-void vk_deck::dynamic_rendering::changeImageLayout(VkCommandBuffer cmd, VkImage image, VkImageLayout old_layout, VkImageLayout new_layout)
+void vkxtra::dynamic_rendering::changeImageLayout(VkCommandBuffer cmd, VkImage image, VkImageLayout old_layout, VkImageLayout new_layout)
 {
 	VkImageMemoryBarrier2 barrier_info{};
 	barrier_info.sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER_2;
@@ -37,7 +37,7 @@ void vk_deck::dynamic_rendering::changeImageLayout(VkCommandBuffer cmd, VkImage 
 }
 
 [[nodiscard]]
-VkRenderingAttachmentInfoKHR vk_deck::dynamic_rendering::defaultColorAttachmentKHR(VkImageView image_view, VkClearValue clear_value)
+VkRenderingAttachmentInfoKHR vkxtra::dynamic_rendering::defaultColorAttachmentKHR(VkImageView image_view, VkClearValue clear_value)
 {
 	VkRenderingAttachmentInfoKHR info{};
 	info.sType = VK_STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO_KHR;
@@ -53,7 +53,7 @@ VkRenderingAttachmentInfoKHR vk_deck::dynamic_rendering::defaultColorAttachmentK
 }
 
 [[nodiscard]]
-VkRenderingAttachmentInfoKHR vk_deck::dynamic_rendering::defaultDepthAttachmentKHR(VkImageView image_view, VkClearValue depth_value)
+VkRenderingAttachmentInfoKHR vkxtra::dynamic_rendering::defaultDepthAttachmentKHR(VkImageView image_view, VkClearValue depth_value)
 {
 	VkRenderingAttachmentInfoKHR info{};
 	info.sType = VK_STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO_KHR;

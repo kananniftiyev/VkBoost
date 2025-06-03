@@ -1,6 +1,6 @@
-#include "vk_deck/imgui.hpp"
+#include "vkxtra/imgui.hpp"
 
-void vk_deck::imgui::initImgui(const VkDevice& device, const VkInstance& instance, const VkPhysicalDevice& physical_device, const VkQueue& queue, const VkFormat& format, SDL_Window& window)
+void vkxtra::imgui::initImgui(const VkDevice& device, const VkInstance& instance, const VkPhysicalDevice& physical_device, const VkQueue& queue, const VkFormat& format, SDL_Window& window)
 {
 	VkDescriptorPoolSize pool_sizes[] = { { VK_DESCRIPTOR_TYPE_SAMPLER, 1000 },
 		{ VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, 1000 },
@@ -54,7 +54,7 @@ void vk_deck::imgui::initImgui(const VkDevice& device, const VkInstance& instanc
 	ImGui_ImplVulkan_CreateFontsTexture();
 }
 
-void vk_deck::imgui::shutdownImgui(const VkDevice& device, VkDescriptorPool &pool)
+void vkxtra::imgui::shutdownImgui(const VkDevice& device, VkDescriptorPool &pool)
 {
 	ImGui_ImplVulkan_Shutdown();
 	vkDestroyDescriptorPool(device, pool, nullptr);

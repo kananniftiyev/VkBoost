@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.16)
-project(vk_deck VERSION 0.1.0 LANGUAGES CXX)
+project(vkxtra VERSION 0.1.0 LANGUAGES CXX)
 
 set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" CACHE STRING "vcpkg toolchain file" FORCE)
+set(CMAKE_PREFIX_PATH "$ENV{VCPKG_ROOT}/installed/x64-windows")
 
 # C++ standard
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Set DEBUG define if in debug build
@@ -49,20 +50,20 @@ set(TEST_FILES
 )
 
 # Static library
-add_library(vk_deck_lib STATIC ${SRC_FILES})
-target_link_libraries(vk_deck_lib PRIVATE
+add_library(vkxtra STATIC ${SRC_FILES})
+target_link_libraries(vkxtra PRIVATE
     Vulkan::Vulkan
-    unofficial-shaderc
+    unofficial::shaderc::shaderc
     spdlog::spdlog
     imgui::imgui
 )
 
 # Test executable
-add_executable(vk_deck_test ${TEST_FILES})
-target_link_libraries(vk_deck_test PRIVATE
-    vk_deck_lib
+add_executable(vkxtra_test ${TEST_FILES})
+target_link_libraries(vkxtra_test PRIVATE
+        vkxtra
     Catch2::Catch2WithMain
 )
 
 # Add test
-add_test(NAME VkDeckTest COMMAND vk_deck_test)
+add_test(NAME VKXTRA COMMAND vkxtra)
