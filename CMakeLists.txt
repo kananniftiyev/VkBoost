@@ -29,7 +29,6 @@ find_package(Catch2 REQUIRED)
 find_package(imgui CONFIG REQUIRED)
 
 # Manual includes
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/mINI/src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/vma/include)
 
@@ -58,12 +57,16 @@ target_link_libraries(vkxtra PRIVATE
     imgui::imgui
 )
 
+target_include_directories(vkxtra PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
 # Test executable
 add_executable(vkxtra_test ${TEST_FILES})
 target_link_libraries(vkxtra_test PRIVATE
         vkxtra
     Catch2::Catch2WithMain
 )
+
+
 
 # Add test
 add_test(NAME VKXTRA COMMAND vkxtra)
