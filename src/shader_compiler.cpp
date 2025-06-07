@@ -165,6 +165,7 @@ vkxtra::shader::shader_compiler::shader_compiler(std::string file_path) : _folde
     {
         LOG_INFO("creating the ini file.");
         std::ofstream created_ini(ini_path);
+        created_ini.close();
     }
 
     mINI::INIFile ini_file(ini_path.string());
@@ -199,8 +200,4 @@ vkxtra::shader::shader_compiler::shader_compiler(std::string file_path) : _folde
     }
 
     ini_file.write(ini);
-}
-
-vkxtra::shader::shader_compiler::~shader_compiler()
-{
 }

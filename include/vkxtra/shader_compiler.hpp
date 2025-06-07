@@ -32,8 +32,8 @@ namespace vkxtra::shader
         std::string fileLastWriteTimeStr(const fs::path &path);
 
     public:
-        shader_compiler(std::string file_path);
-        ~shader_compiler();
+        explicit shader_compiler(std::string file_path);
+        ~shader_compiler() = default;
     };
 
 } // namespace vk_boost::shader
