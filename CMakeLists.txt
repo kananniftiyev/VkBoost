@@ -42,6 +42,7 @@ set(SRC_FILES
     src/vk_shader.cpp
     src/dynamic_rendering.cpp
     src/imgui.cpp
+        src/commands.cpp
 )
 
 set(TEST_FILES
