@@ -30,7 +30,8 @@ find_package(imgui CONFIG REQUIRED)
 
 # Manual includes
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/mINI/src)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/vma/include)
+add_subdirectory(${CMAKE_SOURCE_DIR}/third_party/vma ${CMAKE_BINARY_DIR}/vma)
+
 
 # Source files
 set(SRC_FILES
@@ -55,9 +56,10 @@ target_link_libraries(vkxtra PRIVATE
     unofficial::shaderc::shaderc
     spdlog::spdlog
     imgui::imgui
+        GPUOpen::VulkanMemoryAllocator
 )
 
-target_include_directories(vkxtra PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(vkxtra PUBLIC ${CMAKE_SOURCE_DIR}/include)
 
 # Test executable
 add_executable(vkxtra_test ${TEST_FILES})
